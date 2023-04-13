@@ -42,12 +42,14 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.method == 'GET':
             serializer = UserSerializer(request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
+
         if request.method == 'PATCH':
             serializer = UserSerializer(
                 request.user, data=request.data, partial=True)
             serializer.is_valid(raise_exception=True)
             serializer.save(role=request.user.role)
             return Response(serializer.data, status=status.HTTP_200_OK)
+        return
 
     def update(self, request, *args, **kwargs):
         if request.method == 'PUT':
