@@ -42,7 +42,6 @@ class UserViewSet(viewsets.ModelViewSet):
         if request.method == 'GET':
             serializer = UserSerializer(request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
-
         if request.method == 'PATCH':
             serializer = UserSerializer(
                 request.user, data=request.data, partial=True)
@@ -150,8 +149,7 @@ class ReviewViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         title_id = self.kwargs.get('title_id')
-        review_queryset = Review.objects.filter(title=title_id)
-        return review_queryset
+        return Review.objects.filter(title=title_id)
 
 
 class CommentViewSet(viewsets.ModelViewSet):
