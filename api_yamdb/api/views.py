@@ -1,5 +1,3 @@
-from api.permissions import (AdminOrReadonly, AuthorModeratorAdminOrReadOnly,
-                             IsAdmin, IsAnonymousGuest)
 from django.contrib.auth.tokens import default_token_generator
 from django.core.mail import send_mail
 from django.db import IntegrityError
@@ -14,6 +12,9 @@ from rest_framework.response import Response
 from rest_framework.validators import ValidationError
 from rest_framework_simplejwt.tokens import RefreshToken
 from reviews.models import Category, Comment, Genre, Review, Title, User
+
+from api.permissions import (AdminOrReadonly, AuthorModeratorAdminOrReadOnly,
+                             IsAdmin, IsAnonymousGuest)
 
 from .filters import TitleFilter
 from .mixins import GetListCreateDestroyMixin
